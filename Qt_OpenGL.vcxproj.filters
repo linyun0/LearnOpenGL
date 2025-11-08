@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>qml;cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>qrc;rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Form Files">
+      <UniqueIdentifier>{99349809-55BA-4b9d-BF79-8FDBB0286EB3}</UniqueIdentifier>
+      <Extensions>ui</Extensions>
+    </Filter>
+    <Filter Include="Translation Files">
+      <UniqueIdentifier>{639EADAA-A684-42e4-A9AD-28FC9BCB8F7C}</UniqueIdentifier>
+      <Extensions>ts</Extensions>
+    </Filter>
+    <Filter Include="Resource">
+      <UniqueIdentifier>{70fba14f-bd84-4f00-b7d5-60f77e63c50c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils">
+      <UniqueIdentifier>{5e509c3a-8ed5-4232-8d4c-a34989d6e049}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource\Textures">
+      <UniqueIdentifier>{3f092657-ec84-4d78-af27-a34fab22ee12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource\ShaderSources">
+      <UniqueIdentifier>{35f1c937-efe3-4c2f-855b-98d7f66b8940}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource\Library">
+      <UniqueIdentifier>{44d8bf57-521c-480e-bb68-17f5be069fb7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource\Library\std_image">
+      <UniqueIdentifier>{308cb272-a8fc-4986-90ef-c8a90151f4cd}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <QtRcc Include="Qt_OpenGL.qrc">
+      <Filter>Resource Files</Filter>
+    </QtRcc>
+    <QtUic Include="Qt_OpenGL.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtMoc Include="Qt_OpenGL.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <ClCompile Include="Qt_OpenGL.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MyGLDrawer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BasicTexture.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BasicModel.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils\FileUtil.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="MyGLDrawer.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Shader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BasicTexture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BasicModel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\FileUtil.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource\Library\stb_image\stb_image.h">
+      <Filter>Resource\Library\std_image</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource\Library\stb_image\stb_image_write.h">
+      <Filter>Resource\Library\std_image</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\ShaderSources\shader.fs">
+      <Filter>Resource\ShaderSources</Filter>
+    </None>
+    <None Include="Resource\ShaderSources\shader.vs">
+      <Filter>Resource\ShaderSources</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resource\Textures\container.jpg">
+      <Filter>Resource\Textures</Filter>
+    </Image>
+  </ItemGroup>
+</Project>
