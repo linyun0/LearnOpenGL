@@ -3,6 +3,7 @@
 #include <qopenglwidget.h>
 #include <qopenglfunctions_3_3_core.h>
 #include <gl/GLU.h>
+#include "UI/Control.h"
 class QGLWidget;
 class Shader;
 class BasicTexture;
@@ -26,16 +27,20 @@ class MyGLDrawer : public QOpenGLWidget,QOpenGLFunctions_3_3_Core
 
 public:
     MyGLDrawer(QWidget* parent);
+    void Active(Info& info);
 private:
     unsigned int VAO, VBO, EBO, m_shaderProgram, shaderProgram;
     Shader* m_shader=nullptr;
     BasicTexture* m_texture=nullptr;
-
+    unsigned int m_Tex;
 private:
-
     virtual void mouseMoveEvent(QMouseEvent* event) override;
-
     virtual void mousePressEvent(QMouseEvent* event) override;
+
+    virtual void keyPressEvent(QKeyEvent* e) override;
+    
+    void test();
+
 
 protected:
     void initializeGL() override;

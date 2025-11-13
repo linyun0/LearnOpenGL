@@ -63,6 +63,7 @@
     <ClCompile Include="BasicModel.cpp" />
     <ClCompile Include="BasicTexture.cpp" />
     <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="UI\MyControlWidget.cpp" />
     <ClCompile Include="Utils\FileUtil.cpp" />
     <QtRcc Include="Qt_OpenGL.qrc" />
     <QtUic Include="Qt_OpenGL.ui" />
@@ -70,6 +71,7 @@
     <ClCompile Include="MyGLDrawer.cpp" />
     <ClCompile Include="Qt_OpenGL.cpp" />
     <ClCompile Include="main.cpp" />
+    <QtUic Include="UI\MyControlWidget.ui" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="MyGLDrawer.h" />
@@ -80,6 +82,8 @@
     <ClInclude Include="Resource\Library\stb_image\stb_image.h" />
     <ClInclude Include="Resource\Library\stb_image\stb_image_write.h" />
     <ClInclude Include="Shader.h" />
+    <QtMoc Include="UI\MyControlWidget.h" />
+    <ClInclude Include="UI\Control.h" />
     <ClInclude Include="Utils\FileUtil.h" />
   </ItemGroup>
   <ItemGroup>

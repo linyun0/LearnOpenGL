@@ -51,12 +51,26 @@ Shader::Shader(std::string& vertexShaderPath, std::string& fragmentShaderPath)
     glFuncs->glDeleteShader(vertexShader);
     glFuncs->glDeleteShader(fragmentShader);
 
+    
     getUniforms();
+}
+
+void Shader::moveModel(const glm::vec3& direction)
+{
+    m_modelMatrix = glm::translate(m_modelMatrix, direction);
+    this->UseProgram();
+    this->loadModelMatrix(m_modelMatrix);
+}
+
+void Shader::rotateModel(const glm::vec3& direction, const float& degree)
+{
+    m_modelMatrix = glm::rotate(m_modelMatrix, degree, direction);
+    this->UseProgram();
+    this->loadModelMatrix(m_modelMatrix);
 }
 
 void Shader::getUniforms()
 {
-    UseProgram();
     auto glFuncs = QOpenGLContext::currentContext()->functions();
     m_locationModelMatrix = glFuncs->glGetUniformLocation(m_shaderProgram, "model");
     m_locationViewMatrix = glFuncs->glGetUniformLocation(m_shaderProgram, "view");
@@ -67,7 +81,6 @@ void Shader::getUniforms()
 void Shader::loadProjectionViewMatrix(const glm::mat4& pvMatrix)
 {
     auto glFuncs = QOpenGLContext::currentContext()->functions();
-
     glFuncs->glUniformMatrix4fv(m_locationProjectionViewMatrix,
         1, GL_FALSE, glm::value_ptr(pvMatrix));
 }
@@ -76,14 +89,12 @@ void Shader::loadModelMatrix(const glm::mat4& matrix)
 {
     
     auto glFuncs = QOpenGLContext::currentContext()->functions();
-
     glFuncs->glUniformMatrix4fv(m_locationModelMatrix, 1, GL_FALSE, glm::value_ptr(matrix));
 }
 
 void Shader::loadViewMatrix(const glm::mat4& matrix)
 {
     auto glFuncs = QOpenGLContext::currentContext()->functions();
-
     glFuncs->glUniformMatrix4fv(m_locationViewMatrix, 1, GL_FALSE, glm::value_ptr(matrix));
 }
 
@@ -91,6 +102,6 @@ void Shader::UseProgram()
 {
     auto glFuncs = QOpenGLContext::currentContext()->functions();
     
-    glFuncs->initializeOpenGLFunctions();
+ //   glFuncs->initializeOpenGLFunctions();
     glFuncs->glUseProgram(m_shaderProgram);
 }
