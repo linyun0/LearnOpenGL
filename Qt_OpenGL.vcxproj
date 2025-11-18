@@ -39,12 +39,12 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
-    <ExternalIncludePath>D:\OpenCasCade\products\freeimage-3.17.0-vc14-64\include;D:\OpenGL\include\glm;$(ExternalIncludePath)</ExternalIncludePath>
-    <LibraryPath>D:\OpenCasCade\products\freeimage-3.17.0-vc14-64\lib;$(LibraryPath)</LibraryPath>
+    <ExternalIncludePath>D:\OpenCasCade\products\freeimage-3.17.0-vc14-64\include;D:\OpenGL\include\glm;D:\OpenGL\include;$(ExternalIncludePath)</ExternalIncludePath>
+    <LibraryPath>D:\OpenCasCade\products\freeimage-3.17.0-vc14-64\lib;D:\OpenGL\Libs;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Link>
-      <AdditionalDependencies>opengl32.lib;FreeImage.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;FreeImage.lib;assimp-vc143-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
@@ -62,7 +62,9 @@
   <ItemGroup>
     <ClCompile Include="BasicModel.cpp" />
     <ClCompile Include="BasicTexture.cpp" />
-    <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="Basic\Mesh.cpp" />
+    <ClCompile Include="Basic\Model.cpp" />
+    <ClCompile Include="Basic\Shader.cpp" />
     <ClCompile Include="UI\MyControlWidget.cpp" />
     <ClCompile Include="Utils\FileUtil.cpp" />
     <QtRcc Include="Qt_OpenGL.qrc" />
@@ -79,9 +81,11 @@
   <ItemGroup>
     <ClInclude Include="BasicModel.h" />
     <ClInclude Include="BasicTexture.h" />
+    <ClInclude Include="Basic\Mesh.h" />
+    <ClInclude Include="Basic\Model.h" />
+    <ClInclude Include="Basic\Shader.h" />
     <ClInclude Include="Resource\Library\stb_image\stb_image.h" />
     <ClInclude Include="Resource\Library\stb_image\stb_image_write.h" />
-    <ClInclude Include="Shader.h" />
     <QtMoc Include="UI\MyControlWidget.h" />
     <ClInclude Include="UI\Control.h" />
     <ClInclude Include="Utils\FileUtil.h" />

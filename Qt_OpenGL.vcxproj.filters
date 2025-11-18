@@ -42,6 +42,9 @@
     <Filter Include="UI">
       <UniqueIdentifier>{3994882c-e00d-437e-9a43-e7767286b4b6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Basic">
+      <UniqueIdentifier>{d84677ab-5765-4b0a-967c-55166ae816b8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="Qt_OpenGL.qrc">
@@ -64,9 +67,6 @@
     <ClCompile Include="MyGLDrawer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Shader.cpp">
-      <Filter>Header Files</Filter>
-    </ClCompile>
     <ClCompile Include="BasicTexture.cpp">
       <Filter>Header Files</Filter>
     </ClCompile>
@@ -79,6 +79,15 @@
     <ClCompile Include="UI\MyControlWidget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Basic\Shader.cpp">
+      <Filter>Basic</Filter>
+    </ClCompile>
+    <ClCompile Include="Basic\Mesh.cpp">
+      <Filter>Basic</Filter>
+    </ClCompile>
+    <ClCompile Include="Basic\Model.cpp">
+      <Filter>Basic</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="MyGLDrawer.h">
@@ -89,9 +98,6 @@
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Shader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="BasicTexture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -109,6 +115,15 @@
     </ClInclude>
     <ClInclude Include="UI\Control.h">
       <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Basic\Shader.h">
+      <Filter>Basic</Filter>
+    </ClInclude>
+    <ClInclude Include="Basic\Mesh.h">
+      <Filter>Basic</Filter>
+    </ClInclude>
+    <ClInclude Include="Basic\Model.h">
+      <Filter>Basic</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

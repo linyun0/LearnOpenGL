@@ -7,6 +7,7 @@
 class QGLWidget;
 class Shader;
 class BasicTexture;
+class Model;
 //const char* vertexShaderSource = "#version 330 core\n"
 //"layout (location = 0) in vec3 aPos;\n"
 //"void main()\n"
@@ -33,14 +34,14 @@ private:
     Shader* m_shader=nullptr;
     BasicTexture* m_texture=nullptr;
     unsigned int m_Tex;
+    Model* model=nullptr;
 private:
     virtual void mouseMoveEvent(QMouseEvent* event) override;
     virtual void mousePressEvent(QMouseEvent* event) override;
 
     virtual void keyPressEvent(QKeyEvent* e) override;
     
-    void test();
-
+  
 
 protected:
     void initializeGL() override;
