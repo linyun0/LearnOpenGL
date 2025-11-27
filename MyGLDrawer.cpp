@@ -338,7 +338,12 @@ void MyGLDrawer::initializeGL()
     m_shader->setMat4("view",m_camera->GetViewMatrix());
     m_shader->setMat4("model", modelmatrix);
     m_shader->setBool("isUseTexture",true);
-    m_shader->setBool("isUseLight",false);
+
+    m_shader->setBool("isUseLight",true);
+    m_shader->setVec3("lightColor", 1.0f, 1.0f, 1.0f);
+    m_shader->setVec3("lightPos", 1.2f, 1.0f, 2.0f);
+    m_shader->setVec3("viewPos",m_camera->Position);
+        
 
 }
 
