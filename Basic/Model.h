@@ -34,13 +34,29 @@ public:
     vector<Mesh>    meshes;
     string directory;
     bool gammaCorrection;
+    
+    int getPointsNumber()
+    {
+        int val = 0;
+        for (int i = 0; i < meshes.size(); ++i) {
+             val+=meshes[i].vertices.size();
+        }
 
+         return val;
+    }
     // constructor, expects a filepath to a 3D model.
     Model(string const& path, bool gamma = false) : gammaCorrection(gamma)
     {
         glFuncs = new QOpenGLFunctions_3_3_Core();
         glFuncs->initializeOpenGLFunctions();
         loadModel(path);
+
+        int i = 0;
+        for (int j = 0; j < meshes.size(); ++j)
+        {
+            i += meshes[j].vertices.size();
+        }
+        std::cout << "the number of points=" << i << std::endl;
     }
 
     // draws the model, and thus all its meshes

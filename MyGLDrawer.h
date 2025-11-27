@@ -4,31 +4,28 @@
 #include <qopenglfunctions_3_3_core.h>
 #include <gl/GLU.h>
 #include "UI/Control.h"
+#include "UI/DlgControl.h"
+#include "Basic/Camera.h"
 class QGLWidget;
 class Shader;
 class BasicTexture;
 class Model;
-//const char* vertexShaderSource = "#version 330 core\n"
-//"layout (location = 0) in vec3 aPos;\n"
-//"void main()\n"
-//"{\n"
-//"   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
-//"}\0";
-//const char* fragmentShaderSource = "#version 330 core\n"
-//"out vec4 FragColor;\n"
-//"void main()\n"
-//"{\n"
-//"   FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
-//"}\n\0";
+class Camera;
 
 
-class MyGLDrawer : public QOpenGLWidget,QOpenGLFunctions_3_3_Core
+class MyGLDrawer : public QOpenGLWidget,public QOpenGLFunctions_3_3_Core,public DialogCmd
 {
     Q_OBJECT        // must include this if you use Qt signals/slots
 
 public:
     MyGLDrawer(QWidget* parent);
     void Active(Info& info);
+    void Activate(DlgControl* control);
+private:
+    void InitUI();
+    void UpDateCameraInfoToUI();
+    void UpDateCamera();
+    void UpDateModelInfo();
 private:
     unsigned int VAO, VBO, EBO, m_shaderProgram, shaderProgram;
     Shader* m_shader=nullptr;
@@ -36,13 +33,23 @@ private:
     unsigned int m_Tex;
     Model* model=nullptr;
 private:
+    void showEvent(QShowEvent* event) override;
+private:
     virtual void mouseMoveEvent(QMouseEvent* event) override;
     virtual void mousePressEvent(QMouseEvent* event) override;
-
+    virtual void mouseReleaseEvent(QMouseEvent* event) override;
+    virtual void wheelEvent(QWheelEvent* event) override;
     virtual void keyPressEvent(QKeyEvent* e) override;
-    
-  
+    virtual void keyReleaseEvent(QKeyEvent* e) override;
 
+private:
+    Camera* m_camera = nullptr;
+    double deltaTime = 0.0;
+    bool ctrlPressed = false;
+    bool leftButtonPressed = false;
+    QPoint lastPoint;
+    glm::mat4 modelmatrix=glm::mat4(1.0f);
+    glm::mat4 projection =glm::mat4(1.0f);
 protected:
     void initializeGL() override;
 

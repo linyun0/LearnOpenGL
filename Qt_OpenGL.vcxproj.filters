@@ -88,6 +88,9 @@
     <ClCompile Include="Basic\Model.cpp">
       <Filter>Basic</Filter>
     </ClCompile>
+    <ClCompile Include="UI\DlgControl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="MyGLDrawer.h">
@@ -113,9 +116,6 @@
     <ClInclude Include="Resource\Library\stb_image\stb_image_write.h">
       <Filter>Resource\Library\std_image</Filter>
     </ClInclude>
-    <ClInclude Include="UI\Control.h">
-      <Filter>UI</Filter>
-    </ClInclude>
     <ClInclude Include="Basic\Shader.h">
       <Filter>Basic</Filter>
     </ClInclude>
@@ -124,6 +124,15 @@
     </ClInclude>
     <ClInclude Include="Basic\Model.h">
       <Filter>Basic</Filter>
+    </ClInclude>
+    <ClInclude Include="Basic\Camera.h">
+      <Filter>Basic</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Control.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\DlgControl.h">
+      <Filter>UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

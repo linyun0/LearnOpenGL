@@ -92,9 +92,12 @@ public:
         }
 
         // draw mesh
-        
+     //   glFuncs->glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+       // glFuncs->glPointSize(6);
+       
         glFuncs->glBindVertexArray(VAO);
         glFuncs->glDrawElements(GL_TRIANGLES, static_cast<unsigned int>(indices.size()), GL_UNSIGNED_INT, 0);
+        //glFuncs->glDrawArrays(GL_POINTS, 0, indices.size());
         glFuncs->glBindVertexArray(0);
 
         // always good practice to set everything back to defaults once configured.
