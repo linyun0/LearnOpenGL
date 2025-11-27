@@ -218,6 +218,10 @@ void DlgControl::SetFocus()
 {
 }
 
+void DlgControl::SetColor(const QColor& color)
+{
+}
+
 PushButtonControl::PushButtonControl(QPushButton* btn, int id) :m_obj(btn),m_id(id)
 {
 	m_id = id;
@@ -226,6 +230,18 @@ PushButtonControl::PushButtonControl(QPushButton* btn, int id) :m_obj(btn),m_id(
 int PushButtonControl::GetId()
 {
 	return m_id;
+}
+
+void PushButtonControl::SetColor(const QColor& color)
+{
+	QString styleSheet = QString(
+		"QPushButton {"
+		"   background-color: %1;"
+		"   border: none;"
+		"}"
+	).arg(color.name());
+	m_obj->setText("");
+	m_obj->setStyleSheet(styleSheet);
 }
 
 CheckBoxControl::CheckBoxControl(QCheckBox* checkBox, int id) :m_obj(checkBox), m_id(id)

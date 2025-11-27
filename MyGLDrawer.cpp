@@ -7,6 +7,7 @@
 #include <QKeyEvent>
 #include <QElapsedTimer>
 #include "Basic/Model.h"
+#include "UI/SLWDColorDialog.h"
 glm::vec3 cameraPos = glm::vec3(0.0f, 0.0f, 5.0f);
 glm::vec3 cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
 glm::vec3 cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
@@ -51,6 +52,49 @@ void MyGLDrawer::Activate(DlgControl* control)
         UpDateCamera();
         break;
     }
+    case Model_Widget_PushButton:
+    {
+        control = dlgBox->GetControl(Model_Widget);
+        if (control->isShow()) {
+            control->Hide();
+        }
+        else {
+            control->Show();
+        }
+        break;
+    }
+    case Camera_Widget_PushButton:
+    {
+        control = dlgBox->GetControl(Camera_Widget);
+        if (control->isShow()) {
+            control->Hide();
+        }
+        else {
+            control->Show();
+        }
+        break;
+    }
+    case Light_Widget_PushButton:
+    {
+        control = dlgBox->GetControl(Light_Widget);
+        if (control->isShow()) {
+            control->Hide();
+        }
+        else {
+            control->Show();
+        }
+        break;
+    }
+    case Light_Color_PushButton:
+    {
+        if (!colorDlg) {
+            colorDlg = new SLWDColorDialog(nullptr);
+            connect(colorDlg, &SLWDColorDialog::ColorChanged, this, &MyGLDrawer::OnColorChange);
+        }
+        if(colorDlg->isHidden())
+            colorDlg->show();
+        break;
+    }
     default:
         break;
     }
@@ -72,6 +116,9 @@ void MyGLDrawer::InitUI()
     control->SetString(QString::number(0));
     control = dlgBox->GetControl(Model_Scale);
     control->SetString(QString::number(1));
+
+    control = dlgBox->GetControl(Camera_Widget);
+    control->Hide();
 
     control = dlgBox->GetControl(Model_Point_Val);
     if (control) {
@@ -162,6 +209,17 @@ void MyGLDrawer::UpDateModelInfo()
     makeCurrent();
     m_shader->use();
     m_shader->setMat4("model", matrix);
+    this->update();
+}
+
+void MyGLDrawer::UpDateLightColor(const QColor& color)
+{
+    makeCurrent();
+    QString name = color.name();
+    auto r = color.redF();
+    auto g = color.greenF();
+    auto b = color.blueF();
+    m_shader->setVec3("lightColor", color.redF(), color.greenF(), color.blueF());
     this->update();
 }
 
@@ -305,7 +363,15 @@ void MyGLDrawer::keyPressEvent(QKeyEvent* e)
     }
 
 }
+void MyGLDrawer::OnColorChange(const QColor& color)
+{
+    DlgControl* control = dlgBox->GetControl(Light_Color_PushButton);
+    if (control) {
+        control->SetColor(color);
+        UpDateLightColor(color);
+    }
 
+}
 void MyGLDrawer::keyReleaseEvent(QKeyEvent* e)
 {
     if (e->key() == Qt::Key_Control)
@@ -332,6 +398,7 @@ void MyGLDrawer::initializeGL()
     float divideValue = (float)this->width() / (float)this->height();
     projection = glm::perspective(glm::radians(45.0f), divideValue, 0.1f, 100.0f);
     modelmatrix = glm::scale(modelmatrix, glm::vec3(1.0f, 1.0f, 1.0f));	// it's a bit too big for our scene, so scale it down
+//    projection = glm::ortho(-10.0f, 10.0f, -10.0f, 10.0f, 0.1f, 100.0f);
 
     m_shader->use(); 
     m_shader->setMat4("projection", projection);

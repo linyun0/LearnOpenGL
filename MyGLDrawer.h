@@ -11,7 +11,7 @@ class Shader;
 class BasicTexture;
 class Model;
 class Camera;
-
+class SLWDColorDialog;
 
 class MyGLDrawer : public QOpenGLWidget,public QOpenGLFunctions_3_3_Core,public DialogCmd
 {
@@ -26,6 +26,7 @@ private:
     void UpDateCameraInfoToUI();
     void UpDateCamera();
     void UpDateModelInfo();
+    void UpDateLightColor(const QColor& color);
 private:
     unsigned int VAO, VBO, EBO, m_shaderProgram, shaderProgram;
     Shader* m_shader=nullptr;
@@ -41,6 +42,8 @@ private:
     virtual void wheelEvent(QWheelEvent* event) override;
     virtual void keyPressEvent(QKeyEvent* e) override;
     virtual void keyReleaseEvent(QKeyEvent* e) override;
+private slots:
+    void OnColorChange(const QColor&);
 
 private:
     Camera* m_camera = nullptr;
@@ -50,6 +53,7 @@ private:
     QPoint lastPoint;
     glm::mat4 modelmatrix=glm::mat4(1.0f);
     glm::mat4 projection =glm::mat4(1.0f);
+    SLWDColorDialog* colorDlg = nullptr;
 protected:
     void initializeGL() override;
 

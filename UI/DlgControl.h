@@ -18,15 +18,31 @@
 #define Model_Line_Val 8
 #define Model_Point_Model 9
 #define Model_Point_Val 10
-#define Camera_Position_X 11
-#define Camera_Position_Y 12
-#define Camera_Position_Z 13
-#define Camera_Target_X 14
-#define Camera_Target_Y 15
-#define Camera_Target_Z 16
-#define Camera_Roate_X 17
-#define Camera_Roate_Y 18
-#define Camera_Roate_Z 19
+#define Model_Widget_PushButton 11
+#define Model_Widget 12
+
+#define Camera_Position_X Model_Widget+1
+#define Camera_Position_Y Model_Widget+2
+#define Camera_Position_Z Model_Widget+3
+#define Camera_Target_X	  Model_Widget+4
+#define Camera_Target_Y	Model_Widget+5
+#define Camera_Target_Z Model_Widget+6
+#define Camera_Roate_X Model_Widget+7
+#define Camera_Roate_Y Model_Widget+8
+#define Camera_Roate_Z Model_Widget+9
+#define Camera_Widget_PushButton Model_Widget+10
+#define Camera_Widget Model_Widget+11
+
+#define Light_Position_X	    Camera_Widget+1
+#define Light_Position_Y	    Camera_Widget+2
+#define Light_Position_Z	    Camera_Widget+3
+#define Light_Color_PushButton  Camera_Widget+4
+#define Light_Ambient_CheckBox  Camera_Widget+5
+#define Light_Diffuse_CheckBox  Camera_Widget+6
+#define Light_Specular_CheckBox Camera_Widget+7
+#define Light_Specular_Index	Camera_Widget+8
+#define Light_Widget_PushButton Camera_Widget+9
+#define Light_Widget			Camera_Widget+10
 
 
 
@@ -46,6 +62,7 @@ public:
 	virtual void SetCheckState(bool state);
 	virtual void SetString(const QString& str);
 	virtual void SetFocus();
+	virtual void SetColor(const QColor& color);
 protected:
 	int m_id;
 };
@@ -55,6 +72,7 @@ class PushButtonControl :public DlgControl
 public:
 	PushButtonControl(QPushButton* btn, int id);
 	virtual int GetId();
+	virtual void SetColor(const QColor& color) override;
 private:
 	QPushButton* m_obj;
 	int m_id;

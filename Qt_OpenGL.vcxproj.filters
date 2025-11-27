@@ -91,12 +91,24 @@
     <ClCompile Include="UI\DlgControl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="UI\HexagonGridWidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\SLWDColorDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="MyGLDrawer.h">
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="UI\MyControlWidget.h">
+      <Filter>UI</Filter>
+    </QtMoc>
+    <QtMoc Include="UI\HexagonGridWidget.h">
+      <Filter>UI</Filter>
+    </QtMoc>
+    <QtMoc Include="UI\SLWDColorDialog.h">
       <Filter>UI</Filter>
     </QtMoc>
   </ItemGroup>

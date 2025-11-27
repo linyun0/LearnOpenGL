@@ -16,6 +16,8 @@ MyControlWidget::MyControlWidget(QWidget *parent,DialogCmd* control)
 	m_NameToIdMap.insert({ "ModelLineModelLabel" ,Model_Line_Val});
 	m_NameToIdMap.insert({ "ModelPointModelCheckBox" ,Model_Point_Model});
 	m_NameToIdMap.insert({ "ModelModPointelLabel" ,Model_Point_Val});
+	m_NameToIdMap.insert({ "ModelMatrixSetPushButton" ,Model_Widget_PushButton });
+	m_NameToIdMap.insert({ "ModelWidget" ,Model_Widget });
 
 	m_NameToIdMap.insert({ "CameraIndexX" ,Camera_Position_X});
 	m_NameToIdMap.insert({ "CameraIndexY" ,Camera_Position_Y});
@@ -26,6 +28,20 @@ MyControlWidget::MyControlWidget(QWidget *parent,DialogCmd* control)
 	m_NameToIdMap.insert({ "CameraRoateX" ,Camera_Roate_X});
 	m_NameToIdMap.insert({ "CameraRoateY" ,Camera_Roate_Y});
 	m_NameToIdMap.insert({ "CameraRoateZ" ,Camera_Roate_Z});
+	m_NameToIdMap.insert({ "CameraPushButton" ,Camera_Widget_PushButton});
+	m_NameToIdMap.insert({ "CameraWidget" ,Camera_Widget});
+
+	m_NameToIdMap.insert({ "LightPositionX" , Light_Position_X });
+	m_NameToIdMap.insert({ "LightPositionY" , Light_Position_Y });
+	m_NameToIdMap.insert({ "LightPositionZ" , Light_Position_Z});	    
+	m_NameToIdMap.insert({ "ColorPushButton" , Light_Color_PushButton }); 
+	m_NameToIdMap.insert({ "AmbientCheckBox" , Light_Ambient_CheckBox});  
+	m_NameToIdMap.insert({ "DiffuseCheckBox" , Light_Diffuse_CheckBox }); 
+	m_NameToIdMap.insert({ "SpecularCheckBox" , Light_Specular_CheckBox });
+	m_NameToIdMap.insert({ "SpecularIndex" , Light_Specular_Index	});
+	m_NameToIdMap.insert({ "LightPushButton" , Light_Widget_PushButton });
+	m_NameToIdMap.insert({ "LightWidget" , Light_Widget			});
+
 
 	for (auto it : m_NameToIdMap) {
 		m_IdToNameMap[it.second] = it.first;
