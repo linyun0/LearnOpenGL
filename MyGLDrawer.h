@@ -21,13 +21,16 @@ public:
     MyGLDrawer(QWidget* parent);
     void Active(Info& info);
     void Activate(DlgControl* control);
+
+    void Test();
 private:
-    void InitUI();
+    void InitUI() override;
     void UpDateCameraInfoToUI();
     void UpDateCamera();
     void UpDateModelInfo();
     void UpDateLightColor(const QColor& color);
 private:
+    QTimer* timer=nullptr;
     unsigned int VAO, VBO, EBO, m_shaderProgram, shaderProgram;
     Shader* m_shader=nullptr;
     BasicTexture* m_texture=nullptr;

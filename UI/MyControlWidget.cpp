@@ -8,9 +8,9 @@ MyControlWidget::MyControlWidget(QWidget *parent,DialogCmd* control)
 	m_NameToIdMap.insert({ "ModelIndexX" ,Model_Index_X});
 	m_NameToIdMap.insert({ "ModelIndexY" ,Model_Index_Y});
 	m_NameToIdMap.insert({ "ModelIndexZ" ,Model_Index_Z});
-	m_NameToIdMap.insert({ "ModelRoateX" ,Model_Roate_X});
-	m_NameToIdMap.insert({ "ModelRoateY" ,Model_Roate_Y});
-	m_NameToIdMap.insert({ "ModelRoateZ" ,Model_Roate_Z});
+	m_NameToIdMap.insert({ "RoateXCheckBox" ,Model_Roate_X});
+	m_NameToIdMap.insert({ "RoateYCheckBox" ,Model_Roate_Y});
+	m_NameToIdMap.insert({ "RoateZCheckBox" ,Model_Roate_Z});
 	m_NameToIdMap.insert({ "ModelScale" ,Model_Scale});
 	m_NameToIdMap.insert({ "ModelLineModelCheckBox" ,Model_Line_Model});
 	m_NameToIdMap.insert({ "ModelLineModelLabel" ,Model_Line_Val});
@@ -25,9 +25,9 @@ MyControlWidget::MyControlWidget(QWidget *parent,DialogCmd* control)
 	m_NameToIdMap.insert({ "CameraTargetX" ,Camera_Target_X});
 	m_NameToIdMap.insert({ "CameraTargetY" ,Camera_Target_Y});
 	m_NameToIdMap.insert({ "CameraTargetZ" ,Camera_Target_Z });
-	m_NameToIdMap.insert({ "CameraRoateX" ,Camera_Roate_X});
-	m_NameToIdMap.insert({ "CameraRoateY" ,Camera_Roate_Y});
-	m_NameToIdMap.insert({ "CameraRoateZ" ,Camera_Roate_Z});
+	m_NameToIdMap.insert({ "CameraRoateXCheckBox" ,Camera_Roate_X});
+	m_NameToIdMap.insert({ "CameraRoateYCheckBox" ,Camera_Roate_Y});
+	m_NameToIdMap.insert({ "CameraRoateZCheckBox" ,Camera_Roate_Z});
 	m_NameToIdMap.insert({ "CameraPushButton" ,Camera_Widget_PushButton});
 	m_NameToIdMap.insert({ "CameraWidget" ,Camera_Widget});
 

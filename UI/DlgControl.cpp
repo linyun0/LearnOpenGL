@@ -96,7 +96,7 @@ bool AppDialog::CreateControl(const QString& name)
 		m_NameToControl[name] = (new PushButtonControl((QPushButton*)childWidget, id));
 		ans = true;
 	}
-	else if (objectType==QString("CheckBox")) {
+	else if (objectType==QString("QCheckBox")) {
 		m_NameToControl[name] = (new CheckBoxControl((QCheckBox*)childWidget, id));
 		ans = true;
 	}
@@ -130,7 +130,7 @@ void AppDialog::showEvent(QShowEvent* event)
 void AppDialog::OnCheckBoxStateChanged(int state)
 {
 	QString name = sender()->objectName();
-	//	m_cmd->Activate(GetControl(name));
+	m_cmd->Activate(GetControl(name));
 }
 void AppDialog::OntextEdited(const QString& text)
 {
@@ -164,6 +164,10 @@ void DialogCmd::Activate(DlgControl* control)
 }
 
 void DialogCmd::init()
+{
+}
+
+void DialogCmd::InitUI()
 {
 }
 
@@ -221,6 +225,7 @@ void DlgControl::SetFocus()
 void DlgControl::SetColor(const QColor& color)
 {
 }
+
 
 PushButtonControl::PushButtonControl(QPushButton* btn, int id) :m_obj(btn),m_id(id)
 {

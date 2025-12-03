@@ -96,10 +96,29 @@ public:
        // glFuncs->glPointSize(6);
        
         glFuncs->glBindVertexArray(VAO);
-        glFuncs->glDrawElements(GL_TRIANGLES, static_cast<unsigned int>(indices.size()), GL_UNSIGNED_INT, 0);
-        //glFuncs->glDrawArrays(GL_POINTS, 0, indices.size());
+        switch (shader.GetMode()) {
+        case DrawMode::Normal:
+        {
+            glFuncs->glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
+            glFuncs->glPointSize(1);
+            glFuncs->glDrawElements(GL_TRIANGLES, static_cast<unsigned int>(indices.size()), GL_UNSIGNED_INT, 0);
+            break;
+        }
+        case DrawMode::Line:
+        {
+            glFuncs->glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+            glFuncs->glPointSize(6);
+            glFuncs->glDrawElements(GL_TRIANGLES, static_cast<unsigned int>(indices.size()), GL_UNSIGNED_INT, 0);
+            break;
+        }
+        case DrawMode::Point:
+        {
+            glFuncs->glDrawArrays(GL_POINTS, 0, indices.size());
+            break;
+        }
+        };
+        
         glFuncs->glBindVertexArray(0);
-
         // always good practice to set everything back to defaults once configured.
         glFuncs->glActiveTexture(GL_TEXTURE0);
     }

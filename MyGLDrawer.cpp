@@ -8,6 +8,7 @@
 #include <QElapsedTimer>
 #include "Basic/Model.h"
 #include "UI/SLWDColorDialog.h"
+#include <QTimer>
 glm::vec3 cameraPos = glm::vec3(0.0f, 0.0f, 5.0f);
 glm::vec3 cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
 glm::vec3 cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
@@ -19,6 +20,10 @@ MyGLDrawer::MyGLDrawer(QWidget* parent):
     setFocusPolicy(Qt::StrongFocus); // 确保可以获得焦点
     
     this->setBaseSize(QSize(400, 400));
+
+    timer = new QTimer(this);
+    //connect(timer, &QTimer::timeout, this, &MyGLDrawer::Test);
+    //timer->start(1);
 }
 
 void MyGLDrawer::Active(Info& info)
@@ -29,17 +34,26 @@ void MyGLDrawer::Active(Info& info)
 void MyGLDrawer::Activate(DlgControl* control)
 {
     int ID = control->GetId();
+    if (ID == Model_Roate_X) {
+        int a = 10;
+    }
+
+  
     switch (ID) {
     case Model_Index_X:
     case Model_Index_Y:
     case Model_Index_Z:
-    case Model_Roate_X:
-    case Model_Roate_Y:
-    case Model_Roate_Z:
     case Model_Scale:
     {
 
         UpDateModelInfo();
+        break;
+    }
+    case Model_Roate_X:
+    case Model_Roate_Y:
+    case Model_Roate_Z:
+    {
+
         break;
     }
     case Camera_Position_X:
@@ -95,9 +109,62 @@ void MyGLDrawer::Activate(DlgControl* control)
             colorDlg->show();
         break;
     }
-    default:
+    case Model_Point_Model :
+    {
+
+        bool ispoint = control->GetState();
+        control = dlgBox->GetControl(Model_Line_Model);
+        bool isLine = control->GetState();
+        if (ispoint && isLine) {
+            control->SetCheckState(false);
+            m_shader->SetMode(DrawMode::Point);
+        }
+        if (ispoint && !isLine) {
+            m_shader->SetMode(DrawMode::Point);
+        }
+        if (!ispoint && !isLine) {
+            m_shader->SetMode(DrawMode::Normal);
+        }
+        this->update();
         break;
     }
+    case Model_Line_Model:
+    {
+        bool isLine = control->GetState(); 
+        control = dlgBox->GetControl(Model_Point_Model);
+        bool ispoint = control->GetState();
+        if (ispoint && isLine) {
+            control->SetCheckState(false);
+            m_shader->SetMode(DrawMode::Line);
+        }
+        if (isLine&& !ispoint) {
+            m_shader->SetMode(DrawMode::Line);
+        }
+        if (!ispoint && !isLine) {
+            m_shader->SetMode(DrawMode::Normal);
+        }
+        this->update();
+
+        break;
+    }
+    case Camera_Roate_X:
+    {
+
+        break;
+    }
+    default:
+    {
+        break;
+    }
+    }
+}
+void MyGLDrawer::Test()
+{
+    m_camera->rotateAroundY(0.5);
+    makeCurrent();
+    m_shader->use();
+    m_shader->setMat4("view", m_camera->GetViewMatrix());
+    this->update();
 }
 void MyGLDrawer::InitUI()
 {
@@ -117,8 +184,6 @@ void MyGLDrawer::InitUI()
     control = dlgBox->GetControl(Model_Scale);
     control->SetString(QString::number(1));
 
-    control = dlgBox->GetControl(Camera_Widget);
-    control->Hide();
 
     control = dlgBox->GetControl(Model_Point_Val);
     if (control) {
@@ -126,6 +191,23 @@ void MyGLDrawer::InitUI()
         QString info = QString::fromLocal8Bit("顶点个数:") + QString::number(pointNumber);
         control->SetString(info);
     }
+    
+    glm::vec3 cameraPosition = m_camera->Position;
+    control = dlgBox->GetControl(Camera_Position_X);
+    control->SetString(QString::number(cameraPosition.x));
+    control = dlgBox->GetControl(Camera_Position_Y);
+    control->SetString(QString::number(cameraPosition.y));
+    control = dlgBox->GetControl(Camera_Position_Z);
+    control->SetString(QString::number(cameraPosition.z));
+
+    glm::vec3 cameraTarget = m_camera->Front;
+    control = dlgBox->GetControl(Camera_Target_X);
+    control->SetString(QString::number(cameraTarget.x));
+    control = dlgBox->GetControl(Camera_Target_Y);
+    control->SetString(QString::number(cameraTarget.y));
+    control = dlgBox->GetControl(Camera_Target_Z);
+    control->SetString(QString::number(cameraTarget.z));
+
 }
 
 void MyGLDrawer::UpDateCameraInfoToUI()
@@ -236,20 +318,12 @@ void MyGLDrawer::mouseMoveEvent(QMouseEvent* event)
         float xoffset = currentPoint.x() - lastPoint.x();
         float yoffset = currentPoint.y() - lastPoint.y();
 
-        //int width = this->width()/2;
-        //int height = this->height()/2;
-        //
-        //double AngleX = (xoffset / width) * 360;
-        //double AngleY = (yoffset / height) * 360;
-    
-        m_camera->rotateAroundX(-1);
-       // m_camera->rotateAroundY(AngleY);
-        //m_camera->ProcessMouseMovement(xoffset, yoffset);
+        m_camera->rotateAroundY(xoffset/13.0);
+        m_camera->rotateAroundX(yoffset/13.0);
         makeCurrent();
         m_shader->use();
         m_shader->setMat4("view", m_camera->GetViewMatrix());
         this->update();
-       // lastPoint = event->pos();
     }
     else {
         lastPoint = event->pos();
@@ -388,6 +462,7 @@ void MyGLDrawer::initializeGL()
     initializeOpenGLFunctions();
     glEnable(GL_DEPTH_TEST);
     m_camera = new Camera(glm::vec3(0.0f,0.0f,8.0f));
+    m_camera->SetObserver(this);
     model = new Model("D:/VisualStudio_Project/Qt_OpenGL/Resource/Models/backpack/backpack.obj");
     int number = model->getPointsNumber();
 
@@ -411,7 +486,7 @@ void MyGLDrawer::initializeGL()
     m_shader->setVec3("lightPos", 1.2f, 1.0f, 2.0f);
     m_shader->setVec3("viewPos",m_camera->Position);
         
-
+  //  m_shader->SetMode(DrawMode::Point);
 }
 
 void  MyGLDrawer::resizeGL(int w, int h)

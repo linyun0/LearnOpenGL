@@ -146,6 +146,7 @@ public:
 	void SetDlgBox(AppDialog* dlg);
 	virtual void Activate(DlgControl* control);
 	virtual void init();
+    virtual void InitUI();
 	AppDialog* GetDialog();
 };
 

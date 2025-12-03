@@ -32,13 +32,24 @@
 //	glm::mat4 m_modelMatrix=glm::mat4(1.0f);
 //	
 //};
-
+enum  DrawMode{
+    Normal=0,
+    Line,
+    Point
+};
 
 class Shader
 {
 private:
     QOpenGLFunctions_3_3_Core* glFuncs = nullptr;
+    DrawMode mode=DrawMode::Normal;
 public:
+    void SetMode(DrawMode setmode) {
+        mode = setmode;
+    }
+    DrawMode GetMode() {
+        return mode;
+    }
     unsigned int ID;
     // constructor generates the shader on the fly
     // ------------------------------------------------------------------------

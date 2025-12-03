@@ -170,34 +170,25 @@
              <enum>QLayout::SetDefaultConstraint</enum>
             </property>
             <item>
-             <widget class="QLabel" name="testLabel_8">
+             <widget class="QCheckBox" name="RoateXCheckBox">
               <property name="text">
-               <string>X:</string>
+               <string>X</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="ModelRoateX"/>
-            </item>
-            <item>
-             <widget class="QLabel" name="testLabel_7">
+             <widget class="QCheckBox" name="RoateYCheckBox">
               <property name="text">
-               <string>Y:</string>
+               <string>Y</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="ModelRoateY"/>
-            </item>
-            <item>
-             <widget class="QLabel" name="testLabel_9">
+             <widget class="QCheckBox" name="RoateZCheckBox">
               <property name="text">
-               <string>Z:</string>
+               <string>Z</string>
               </property>
              </widget>
-            </item>
-            <item>
-             <widget class="QLineEdit" name="ModelRoateZ"/>
             </item>
            </layout>
           </item>
@@ -257,7 +248,7 @@
             <item>
              <widget class="QCheckBox" name="ModelPointModelCheckBox">
               <property name="text">
-               <string>线框模式</string>
+               <string>顶点模式</string>
               </property>
              </widget>
             </item>
@@ -409,34 +400,25 @@
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout_19">
             <item>
-             <widget class="QLabel" name="label_18">
+             <widget class="QCheckBox" name="CameraRoateXCheckBox">
               <property name="text">
-               <string>X：</string>
+               <string>X</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="CameraRoateX"/>
-            </item>
-            <item>
-             <widget class="QLabel" name="label_19">
+             <widget class="QCheckBox" name="CameraRoateYCheckBox">
               <property name="text">
-               <string>Y：</string>
+               <string>Y</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="CameraRoateY"/>
-            </item>
-            <item>
-             <widget class="QLabel" name="label_20">
+             <widget class="QCheckBox" name="CameraRoateZCheckBox">
               <property name="text">
-               <string>Z：</string>
+               <string>Z</string>
               </property>
              </widget>
-            </item>
-            <item>
-             <widget class="QLineEdit" name="CameraRoateZ"/>
             </item>
            </layout>
           </item>
