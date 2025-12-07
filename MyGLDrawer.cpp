@@ -12,6 +12,7 @@
 glm::vec3 cameraPos = glm::vec3(0.0f, 0.0f, 5.0f);
 glm::vec3 cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
 glm::vec3 cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
+glm::vec3 lightPosition = glm::vec3(1.2f,1.0f,2.0f);
 
 MyGLDrawer::MyGLDrawer(QWidget* parent):
     QOpenGLWidget(parent)
@@ -22,7 +23,7 @@ MyGLDrawer::MyGLDrawer(QWidget* parent):
     this->setBaseSize(QSize(400, 400));
 
     timer = new QTimer(this);
-    //connect(timer, &QTimer::timeout, this, &MyGLDrawer::Test);
+    connect(timer, &QTimer::timeout, this, &MyGLDrawer::RotateLightPosition);
     //timer->start(1);
 }
 
@@ -37,9 +38,22 @@ void MyGLDrawer::Activate(DlgControl* control)
     if (ID == Model_Roate_X) {
         int a = 10;
     }
-
+    
+    if (ID == Light_Rotate)
+    {
+        int a = 10;
+    }
   
     switch (ID) {
+    case Light_Rotate:
+    {
+        bool isOn = control->GetState();
+        if (isOn)
+            timer->start(50);
+        else
+            timer->stop();
+        break;
+    }
     case Model_Index_X:
     case Model_Index_Y:
     case Model_Index_Z:
@@ -305,6 +319,18 @@ void MyGLDrawer::UpDateLightColor(const QColor& color)
     this->update();
 }
 
+void MyGLDrawer::RotateLightPosition()
+{
+    glm::mat4 matrix = glm::mat4(1.0f);
+    matrix = glm::rotate(matrix, glm::radians(float(3)), glm::vec3(0.0f, 1.0f, 0.0f));
+    lightPosition = matrix*glm::vec4(lightPosition,1.0f);
+
+    makeCurrent();
+    m_shader->setVec3("lightPos", lightPosition.x, lightPosition.y, lightPosition.z);
+    this->update();
+
+}
+
 void MyGLDrawer::showEvent(QShowEvent* event)
 {
     InitUI();
@@ -455,7 +481,6 @@ void MyGLDrawer::keyReleaseEvent(QKeyEvent* e)
     QWidget::keyReleaseEvent(e);
 }
 
-
 void MyGLDrawer::initializeGL()
 {
 
@@ -483,7 +508,7 @@ void MyGLDrawer::initializeGL()
 
     m_shader->setBool("isUseLight",true);
     m_shader->setVec3("lightColor", 1.0f, 1.0f, 1.0f);
-    m_shader->setVec3("lightPos", 1.2f, 1.0f, 2.0f);
+    m_shader->setVec3("lightPos", lightPosition.x, lightPosition.y, lightPosition.z);
     m_shader->setVec3("viewPos",m_camera->Position);
         
   //  m_shader->SetMode(DrawMode::Point);

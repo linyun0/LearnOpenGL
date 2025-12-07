@@ -29,6 +29,7 @@ private:
     void UpDateCamera();
     void UpDateModelInfo();
     void UpDateLightColor(const QColor& color);
+    void RotateLightPosition();
 private:
     QTimer* timer=nullptr;
     unsigned int VAO, VBO, EBO, m_shaderProgram, shaderProgram;

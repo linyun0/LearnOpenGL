@@ -41,6 +41,7 @@ MyControlWidget::MyControlWidget(QWidget *parent,DialogCmd* control)
 	m_NameToIdMap.insert({ "SpecularIndex" , Light_Specular_Index	});
 	m_NameToIdMap.insert({ "LightPushButton" , Light_Widget_PushButton });
 	m_NameToIdMap.insert({ "LightWidget" , Light_Widget			});
+	m_NameToIdMap.insert({ "LightRotate" , Light_Rotate });
 
 
 	for (auto it : m_NameToIdMap) {

@@ -43,6 +43,7 @@
 #define Light_Specular_Index	Camera_Widget+8
 #define Light_Widget_PushButton Camera_Widget+9
 #define Light_Widget			Camera_Widget+10
+#define Light_Rotate			Camera_Widget+11
 
 
 

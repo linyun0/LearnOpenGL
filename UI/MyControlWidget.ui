@@ -586,6 +586,13 @@
                </item>
               </layout>
              </item>
+             <item>
+              <widget class="QCheckBox" name="LightRotate">
+               <property name="text">
+                <string>旋转</string>
+               </property>
+              </widget>
+             </item>
             </layout>
            </widget>
           </item>
