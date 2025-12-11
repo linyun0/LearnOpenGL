@@ -19,6 +19,7 @@ class MyGLDrawer : public QOpenGLWidget,public QOpenGLFunctions_3_3_Core,public 
 
 public:
     MyGLDrawer(QWidget* parent);
+    ~MyGLDrawer();
     void Active(Info& info);
     void Activate(DlgControl* control);
 

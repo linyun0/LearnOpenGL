@@ -27,22 +27,35 @@ MyGLDrawer::MyGLDrawer(QWidget* parent):
     //timer->start(1);
 }
 
+MyGLDrawer::~MyGLDrawer()
+{
+    if (timer)
+    {
+        delete timer;
+        timer = nullptr;
+    }
+    if (colorDlg)
+    {
+        delete colorDlg;
+        colorDlg = nullptr;
+    }
+    if (model) {
+        delete model;
+        model = nullptr;
+    }
+    if (m_shader) {
+        delete m_shader;
+        m_shader = nullptr;
+    }
+}
+
 void MyGLDrawer::Active(Info& info)
 {
-    int a = 10;
 
 }
 void MyGLDrawer::Activate(DlgControl* control)
 {
     int ID = control->GetId();
-    if (ID == Model_Roate_X) {
-        int a = 10;
-    }
-    
-    if (ID == Light_Rotate)
-    {
-        int a = 10;
-    }
   
     switch (ID) {
     case Light_Rotate:
@@ -67,7 +80,8 @@ void MyGLDrawer::Activate(DlgControl* control)
     case Model_Roate_Y:
     case Model_Roate_Z:
     {
-
+        
+        int a = 10;
         break;
     }
     case Camera_Position_X:
@@ -531,7 +545,6 @@ void   MyGLDrawer::paintGL()
     
     m_shader->use();
     model->Draw(*m_shader);
-
     deltaTime = 1;
 
 }
